@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>ماشین حساب اقساط موبایل</title>
+  <style>
+    body {
+      font-family: 'Vazir', sans-serif;
+      direction: rtl;
+      text-align: center;
+      background-color: #f9f9f9;
+      margin-top: 50px;
+    }
+    .container {
+      background-color: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      margin: 10px 0;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>محاسبه اقساط موبایل</h2>
+    <input type="number" id="price" placeholder="قیمت گوشی (تومان)">
+    <button onclick="محاسبه()">محاسبه</button>
+    <div class="result" id="نتیجه"></div>
+  </div>
+
+  <script>
+    function محاسبه() {
+      let قیمت = parseFloat(document.getElementById("price").value);
+      if (isNaN(قیمت) || قیمت <= 0) {
+        alert("لطفاً یک عدد معتبر وارد کنید.");
+        return;
+      }
+
+      let سود = قیمت * 0.3;
+      let قیمت_نهایی = قیمت + سود;
+      let قسط = قیمت_نهایی / 6;
+
+      document.getElementById("نتیجه").innerHTML = `
+        <p>قیمت گوشی: ${قیمت.toLocaleString()} تومان</p>
+        <p>کل سود (۶ ماه): ${سود.toLocaleString()} تومان</p>
+        <p>قیمت نهایی: ${قیمت_نهایی.toLocaleString()} تومان</p>
+        <p><strong>مبلغ هر قسط: ${قسط.toLocaleString()} تومان</strong></p>
+      `;
+    }
+  </script>
+</body>
+</html>
